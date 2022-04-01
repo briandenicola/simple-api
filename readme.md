@@ -5,9 +5,16 @@ Sometimes you just need a very simple API to test connectivity. This is my super
 ```bash
 scripts/publish.bat
 ```
-# Run
+# Native Run
 ```bash
 \src\publish\windows\api.exe
+```
+
+# Docker Run
+```bash
+cd src
+docker build -t todo:1.0 .
+docker run -p 5500:5500 todo:1.0
 ```
 
 # Test
