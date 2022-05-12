@@ -1,16 +1,13 @@
-name: Trigger auto deployment for simple
+name: Trigger deployment to Container Apps
 
-# When this action will be executed
 on:
-  # Automatically trigger it when detected changes in repo
   push:
     branches: 
       [ master ]
     paths:
-    - 'src/dockerfile/**'
-    - '.github/workflows/simple-AutoDeployTrigger-5111a3fd-79df-40a2-a061-9c667e7eb510.yml'
+    - 'src/**'
+    - '.github/workflows/main.yml'
 
-  # Allow mannually trigger 
   workflow_dispatch:      
 
 jobs:
