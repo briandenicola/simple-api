@@ -6,7 +6,7 @@ on:
       [ master ]
     paths:
     - 'src/**'
-    - '.github/workflows/main.yml'
+    - '.github/workflows/main.yaml'
 
   workflow_dispatch:      
 
