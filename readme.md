@@ -14,7 +14,7 @@ docker run -p 5500:5500 todo:1.0
 ```
 
 # Azure Container Apps via Github Actions 
-* [https://github.com/briandenicola/simple-api/actions/workflows/main.yaml]
+* [Trigger Actions](https://github.com/briandenicola/simple-api/actions/workflows/main.yaml)
 * [![Trigger deployment to Container Apps](https://github.com/briandenicola/simple-api/actions/workflows/main.yaml/badge.svg)](https://github.com/briandenicola/simple-api/actions/workflows/main.yaml)
 
 # Test
