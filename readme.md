@@ -1,21 +1,21 @@
 # Overview
 Sometimes you just need a very simple API to test connectivity. This is my super simple dotnet version.
 
-# Build
+# Build and Run
 ```bash
 scripts/publish.bat
+src/publish/windows/api.exe
 ```
-# Native Run
-```bash
-\src\publish\windows\api.exe
-```
-
-# Docker Run
+# Docker Build and Run
 ```bash
 cd src
 docker build -t todo:1.0 .
 docker run -p 5500:5500 todo:1.0
 ```
+
+# Azure Container Apps via Github Actions 
+* [https://github.com/briandenicola/simple-api/actions/workflows/main.yaml]
+* [![Trigger deployment to Container Apps](https://github.com/briandenicola/simple-api/actions/workflows/main.yaml/badge.svg)](https://github.com/briandenicola/simple-api/actions/workflows/main.yaml)
 
 # Test
 ```bash
