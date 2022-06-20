@@ -33,7 +33,6 @@
 
 	"waitFor": "postCreateCommand",
 
-	"onCreateCommand": "bash .devcontainer/on-create.sh",
 	"postCreateCommand": "bash .devcontainer/post-create.sh",
 	"postStartCommand": "bash .devcontainer/post-start.sh"
 }
