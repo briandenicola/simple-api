@@ -5,10 +5,11 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": { 
-			"VARIANT": "6.0-bullseye",
-			"NODE_VERSION": "none"
-		}
+			"VARIANT": "6.0-bullseye"
+		}		
 	},
+	"runArgs": ["--init", "--privileged"],
+	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
 
 	// Configure tool-specific properties.
 	"customizations": {

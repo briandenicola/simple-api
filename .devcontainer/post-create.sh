@@ -5,7 +5,10 @@
 echo "$(date)    post-create start" >> ~/status
 
 #Install k3s.ios
-curl -sfL https://get.k3s.io | sh -
+#curl -sfL https://get.k3s.io | sh -
+#sudo k3s server &
+wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+k3d cluster create mycluster
 
 # create local registry
 docker network create k3d
