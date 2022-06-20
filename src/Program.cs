@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 
 var app = builder.Build();
-app.Urls.Add("http://+:5500");
+app.Urls.Add("http://+:5501");
 
 app.MapGet( "/", () =>  $"Hello World! The time now is {DateTime.Now}" );
 

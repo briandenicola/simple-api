@@ -9,12 +9,17 @@
 		}		
 	},
 	"runArgs": ["--init", "--privileged"],
-	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
 
-	// Configure tool-specific properties.
+	"forwardPorts": [
+		5501
+	],
+
+	"portsAttributes": {
+		"5501": { "label": "App"}
+	},
+
 	"customizations": {
 		"vscode": {	
-			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-dotnettools.csharp",
 				"ms-dotnettools.csharp",
