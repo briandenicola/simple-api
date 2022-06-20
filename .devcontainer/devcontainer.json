@@ -26,13 +26,14 @@
 	"remoteUser": "vscode",
 	"features": {
 		"kubectl-helm-minikube": "1.23",
-		"terraform": "1.1",
-		"azure-cli": "latest"
+		"terraform": "latest",
+		"azure-cli": "latest",
+		"docker-from-docker": "latest"
 	},
 
 	"waitFor": "postCreateCommand",
 
-	"onCreateCommand": "/bin/bash -c .devcontainer/on-create.sh",
-	"postCreateCommand": "/bin/bash -c .devcontainer/post-create.sh",
-	"postStartCommand": "/bin/bash -c .devcontainer/post-start.sh"
+	"onCreateCommand": "bash .devcontainer/on-create.sh",
+	"postCreateCommand": "bash .devcontainer/post-create.sh",
+	"postStartCommand": "bash .devcontainer/post-start.sh"
 }
