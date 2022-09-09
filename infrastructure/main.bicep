@@ -3,7 +3,7 @@ param environmentName string = 'env-${uniqueString(resourceGroup().id)}'
 
 var appName = 'simple-app'
 var appImage = 'docker.io/bjd145/simple:97a7dd4338986d13d409c43ebb2c9571f6d5b6ed'
-var appPort = 5500
+var appPort = 5501
 
 module environment 'environment.bicep' = {
   name: 'container-app-environment'
