@@ -5,8 +5,8 @@
 echo "$(date)    post-create start" >> ~/status
 
 #Install jq
-apt update
-apt install -y jq
+sudo apt update
+sudo apt install -y jq
 
 #Install k3s.ios
 wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
