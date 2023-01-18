@@ -1,11 +1,12 @@
 # Overview
 Sometimes you just need a very simple API to test connectivity. This is my super simple dotnet version.
 
-# Build and Run
+# Windows Build and Run
 ```bash
 scripts/publish.bat
 src/publish/windows/api.exe
 ```
+
 # Docker Build and Run
 ```bash
 cd src
