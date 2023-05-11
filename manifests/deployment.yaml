@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: simple-api
-        image: bjd145/simple-api:f299c36fa3d19428f15c359e6437aca13fdcb335
+        image: bjd145/simple:f299c36fa3d19428f15c359e6437aca13fdcb335
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
