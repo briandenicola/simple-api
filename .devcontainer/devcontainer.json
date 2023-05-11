@@ -5,7 +5,7 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": { 
-			"VARIANT": "6.0-bullseye"
+			"VARIANT": "7.0-jammy"
 		}		
 	},
 	"runArgs": ["--init", "--privileged"],
