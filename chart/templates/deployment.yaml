@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: simple-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: simple-api
+        image: {{ print .Values.image.repository "/simple-api:" .Values.image.tag }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5501
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "2"
+          requests:
+            memory: "64Mi"
+            cpu: "0.25"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-api-svc
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  selector:
+    app: osimple-api
+  ports:
+  - port: 80
+    targetPort: 5501
+  type: LoadBalancer

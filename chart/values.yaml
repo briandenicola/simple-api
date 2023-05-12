@@ -1,0 +1,5 @@
+replicaCount: 1
+
+image:
+  repository: bjd145
+  tag: 5adab37f2
