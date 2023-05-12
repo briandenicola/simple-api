@@ -13,6 +13,7 @@ env:
     CLUSTER_NAME: gator-28237-aks
     CLUSTER_RESOURCE_GROUP: gator-28237_rg
     CONTAINER_NAME: simple-api
+    NAMESPACE: simple-api
 jobs:
     buildImage:
         permissions:
@@ -57,4 +58,4 @@ jobs:
                 resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
                 use-kubelogin: "true"
             - name: Deploy application
-              run: helm upgrade --wait -i -f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }} automated-deployment ${{ env.CHART_PATH }}
+              run: helm upgrade --wait -i -n ${{ env.NAMESPACE }}-f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }} automated-deployment ${{ env.CHART_PATH }} --create-namespace
