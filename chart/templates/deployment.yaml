@@ -10,7 +10,7 @@ metadata:
   name: simpleapiconfig
   namespace: simple
 data:
-  APPLICATIONINSIGHTS_CONNECTION_STRING: InstrumentationKey=65f3cdc4-7255-460f-867f-a1f6c1cad282
+  APPLICATIONINSIGHTS_CONNECTION_STRING: {{ .Values.ai.connection_string }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -39,10 +39,10 @@ spec:
     spec:
       containers:
       - name: simple-api
-        image: bjd145/simple:3782de81
+        image: {{ print .Values.image.repository "/simple-api:" .Values.image.tag }}
         imagePullPolicy: Always
         ports:
-        - containerPort: 5000
+        - containerPort: 5501
         resources:
           limits:
             memory: "512Mi"

@@ -6,12 +6,14 @@ name: simple-api
     workflow_dispatch: {}
 env:
     ACR_RESOURCE_GROUP: Core_ContainerRepo_RG
-    AZURE_CONTAINER_REGISTRY: bjdcsa
-    CLUSTER_NAME: gator-28237-aks
-    CLUSTER_RESOURCE_GROUP: gator-28237_rg
+    AZURE_CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}
+    CHART_OVERRIDE_PATH: ./chart/values.yaml
+    CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+    CLUSTER_RESOURCE_GROUP: ${{ secrets.CLUSTER_RESOURCE_GROUP }}
     CONTAINER_NAME: simple-api
-    DEPLOYMENT_MANIFEST_PATH: |
-        ./manifests/deployment.yaml
+    NAMESPACE: simple-api
+    CHART_OVERRIDES: image.tag=${{ github.sha }},image.repository=${{ secrets.AZURE_CONTAINER_REGISTRY }},ai.connection_string=${{ secrets.APPLICATIONINSIGHTS_CONNECTION_STRING }}
+    CHART_PATH: ./chart
 jobs:
     buildImage:
         permissions:
@@ -55,10 +57,5 @@ jobs:
                 cluster-name: ${{ env.CLUSTER_NAME }}
                 resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
                 use-kubelogin: "true"
-            - uses: Azure/k8s-deploy@v4
-              name: Deploys application
-              with:
-                action: deploy
-                images: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }}
-                manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
-                namespace: simple-api
+            - name: Deploy application
+              run: helm upgrade --wait -i -n ${{ env.NAMESPACE }} -f ${{ env.CHART_OVERRIDE_PATH }} --set ${{ env.CHART_OVERRIDES }} automated-deployment ${{ env.CHART_PATH }} --create-namespace

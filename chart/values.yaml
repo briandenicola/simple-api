@@ -1,0 +1,8 @@
+replicaCount: 1
+
+image:
+  repository: bjd145
+  tag: 5adab37f2
+
+ai:
+  connection_string: InstrumentationKey=65f3cdc4-7255-460f-867f-a1f6c1cad282
