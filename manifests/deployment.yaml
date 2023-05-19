@@ -1,7 +1,22 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: simple
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simpleapiconfig
+  namespace: simple
+data:
+  APPLICATIONINSIGHTS_CONNECTION_STRING: InstrumentationKey=65f3cdc4-7255-460f-867f-a1f6c1cad282
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simple-api
+  namespace: simple
 spec:
   replicas: 2
   selector:
@@ -24,7 +39,7 @@ spec:
     spec:
       containers:
       - name: simple-api
-        image: bjd145/simple:f299c36fa3d19428f15c359e6437aca13fdcb335
+        image: bjd145/simple:3782de81
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
@@ -35,16 +50,20 @@ spec:
           requests:
             memory: "64Mi"
             cpu: "0.25"
+        envFrom:
+        - configMapRef:
+            name: simpleapiconfig
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: simple-api-svc
+  namespace: simple
   annotations:
     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 spec:
   selector:
-    app: otel-demo
+    app: simple-api
   ports:
   - port: 80
     targetPort: 5501
