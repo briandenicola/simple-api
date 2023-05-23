@@ -1,9 +1,8 @@
-name: simple-api
-"on":
-    push:
-        branches:
-            - main
+name: Trigger an build and deploy to Container Apps
+
+on:
     workflow_dispatch: {}
+
 env:
     ACR_RESOURCE_GROUP: Core_ContainerRepo_RG
     AZURE_CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}
@@ -14,6 +13,7 @@ env:
     NAMESPACE: simple-api
     CHART_OVERRIDES: image.tag=${{ github.sha }},image.repository=${{ secrets.AZURE_CONTAINER_REGISTRY }},ai.connection_string=${{ secrets.APPLICATIONINSIGHTS_CONNECTION_STRING }}
     CHART_PATH: ./chart
+
 jobs:
     buildImage:
         permissions:
@@ -30,6 +30,7 @@ jobs:
                 tenant-id: ${{ secrets.AZURE_TENANT_ID }}
             - name: Build and push image to ACR
               run: az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.ACR_RESOURCE_GROUP }} -f ./src/dockerfile ./src
+    
     deploy:
         permissions:
             actions: read
