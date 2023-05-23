@@ -1,4 +1,4 @@
-name: Trigger an build and deploy to Container Apps
+name: Trigger an ACR build and deploy to AKS
 
 on:
     workflow_dispatch: {}
