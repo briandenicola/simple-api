@@ -16,7 +16,7 @@ param revisionMode string = 'multiple'
 var cpu = json('0.5')
 var memory = '1Gi'
 
-resource containerApp 'Microsoft.App/containerApps@2022-11-01-preview' = {
+resource containerApp 'Microsoft.App/containerApps@2023-04-01-preview' = {
   name: containerAppName
   location: location
   properties: {
