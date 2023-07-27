@@ -1,0 +1,32 @@
+name: Trigger an ACR build
+
+on:
+    workflow_dispatch: {}
+
+env:
+    ACR_RESOURCE_GROUP: Core_ContainerRepo_RG
+    AZURE_CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}
+    CHART_OVERRIDE_PATH: ./chart/values.yaml
+    CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+    CLUSTER_RESOURCE_GROUP: ${{ secrets.CLUSTER_RESOURCE_GROUP }}
+    CONTAINER_NAME: simple-api
+    NAMESPACE: simple-api
+    CHART_OVERRIDES: image.tag=${{ github.sha }},image.repository=${{ secrets.AZURE_CONTAINER_REGISTRY }},ai.connection_string=${{ secrets.APPLICATIONINSIGHTS_CONNECTION_STRING }}
+    CHART_PATH: ./chart
+
+jobs:
+    buildImage:
+        permissions:
+            contents: read
+            id-token: write
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: azure/login@v1.4.3
+              name: Azure login
+              with:
+                client-id: ${{ secrets.AZURE_CLIENT_ID }}
+                subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+                tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+            - name: Build and push image to ACR
+              run: az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.ACR_RESOURCE_GROUP }} -f ./src/dockerfile ./src
