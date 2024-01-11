@@ -1,5 +1,6 @@
 #FROM mcr.microsoft.com/dotnet/sdk:6.0.8-jammy-amd64 AS builder
-FROM mcr.microsoft.com/dotnet/sdk:7.0.400-jammy-amd64 AS builder
+#FROM mcr.microsoft.com/dotnet/sdk:7.0.400-jammy-amd64 AS builder
+FROM mcr.microsoft.com/dotnet/sdk:8.0.101-jammy-amd64 AS builder
 
 WORKDIR /src/
 COPY . .
@@ -8,7 +9,9 @@ RUN dotnet publish -c Release --nologo -o publish/linux -r linux-x64 --self-cont
 
 #Build runtime image
 #FROM mcr.microsoft.com/dotnet/runtime-deps:6.0.8-jammy-amd64
-FROM mcr.microsoft.com/dotnet/runtime-deps:7.0.10-jammy-amd64
+#FROM mcr.microsoft.com/dotnet/runtime-deps:7.0.10-jammy-amd64
+FROM mcr.microsoft.com/dotnet/runtime-deps:8.0.101-jammy-amd64
+
 WORKDIR /app
 COPY --from=builder /src/publish/linux/api .
 COPY appsettings.json .
