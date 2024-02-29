@@ -26,5 +26,5 @@ jobs:
                 username: ${{ secrets.SIMPLE_REGISTRY_USERNAME }}
                 password: ${{ secrets.SIMPLE_REGISTRY_PASSWORD }}
             - run: |
-                docker build . -t ${{ secrets.AZURE_CONTAINER_REGISTRY }}/${{ env.CONTAINER_NAME }}:${{ github.sha }} -f ./src/dockerfile ./src
+                docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY }}/${{ env.CONTAINER_NAME }}:${{ github.sha }} -f ./src/dockerfile ./src
                 docker push ${{ secrets.AZURE_CONTAINER_REGISTRY }}/${{ env.CONTAINER_NAME }}:${{ github.sha }}
