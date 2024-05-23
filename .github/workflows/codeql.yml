@@ -12,6 +12,7 @@
 name: "CodeQL"
 
 on:
+  workflow_dispatch: {}
   schedule:
     - cron: '31 19 * * 6'
 
