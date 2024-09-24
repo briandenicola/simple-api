@@ -1,7 +1,7 @@
 name: Trigger an ACR build (Self-Hosted)
 
 on:
-    workflow_dispatch: {}
+    workflow_dispatch: 
 
 env:
     AZURE_CONTAINER_REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}

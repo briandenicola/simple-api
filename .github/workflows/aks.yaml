@@ -1,7 +1,7 @@
 name: Trigger an ACR build and deploy to AKS
 
 on:
-    workflow_dispatch: {}
+    workflow_dispatch:
 
 env:
     ACR_RESOURCE_GROUP: Core_ContainerRepo_RG

@@ -1,7 +1,12 @@
 name: Trigger an ACR build
 
 on:
-    workflow_dispatch: {}
+    push:
+        branches: 
+        - main
+        paths:
+        - 'src/**'
+    workflow_dispatch:
 
 env:
     ACR_RESOURCE_GROUP: Core_ContainerRepo_RG

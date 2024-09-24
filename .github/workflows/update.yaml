@@ -1,12 +1,6 @@
 name: Trigger an build and update deployment to Container Apps
 
 on:
-  push:
-    branches: 
-    - main
-    paths:
-    - 'src/**'
-
   workflow_dispatch:      
 
 permissions:
