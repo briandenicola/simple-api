@@ -10,7 +10,7 @@ metadata:
   name: simpleapiconfig
   namespace: simple
 data:
-  APPLICATIONINSIGHTS_CONNECTION_STRING: {{ .Values.ai.connection_string }}
+  APPLICATIONINSIGHTS_CONNECTION_STRING: {{ print .Values.ai.connection_string | quote }}
 ---
 apiVersion: apps/v1
 kind: Deployment
