@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: bjd145
-  tag: 5adab37f2
+  tag: 1e923a981e5872d2401457c847b9f4422785b2f6 
 
 ai:
-  connection_string: InstrumentationKey=65f3cdc4-7255-460f-867f-a1f6c1cad282
+  connection_string: ''

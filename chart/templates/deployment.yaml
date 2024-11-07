@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: simple-api
-        image: {{ print .Values.image.repository "/simple-api:" .Values.image.tag }}
+        image: {{ print .Values.image.repository "/simple:" .Values.image.tag }}
         imagePullPolicy: Always
         ports:
         - containerPort: 5501
