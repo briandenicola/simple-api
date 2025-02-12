@@ -1,6 +1,9 @@
 name: Trigger an ACR build
 
 on:
+    # Once a week on Wednesday at 9:00am
+    schedule:
+    - cron: "05 9 * * wed"
     push:
         branches: 
         - main
