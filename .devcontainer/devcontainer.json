@@ -5,7 +5,7 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": { 
-			"VARIANT": "7.0-jammy"
+			"VARIANT": "dev-9.0-noble"
 		}		
 	},
 	"runArgs": ["--init", "--privileged"],
@@ -22,9 +22,11 @@
 		"vscode": {	
 			"extensions": [
 				"ms-dotnettools.csharp",
-				"ms-dotnettools.csharp",
 				"ms-azuretools.vscode-docker",
-				"ms-kubernetes-tools.vscode-kubernetes-tools"
+				"ms-dotnettools.vscode-dotnet-runtime",
+				"ms-azuretools.vscode-azureresourcegroups",
+				"ms-azuretools.vscode-bicep",
+				"ms-azuretools.vscode-azurecontainerapps"
 			]
 		}
 	},
@@ -33,7 +35,6 @@
 	"features": {
 		"ghcr.io/devcontainers/features/azure-cli:1": {},
 		"ghcr.io/devcontainers/features/common-utils:1": {},
-		"ghcr.io/devcontainers/features/terraform:1": {},
 		"ghcr.io/devcontainers/features/docker-from-docker:1": {},
 		"ghcr.io/devcontainers/features/sshd:1": {
 			"version": "latest"
